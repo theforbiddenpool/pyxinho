@@ -21,9 +21,9 @@ def rename_all(path: str):
       j += 1
 
     os.rename(original_name, new_name)
-    print("Renamed "+original_name+" to "+new_name)
+    print("Renamed %s to %s" %(original_name, new_name))
     i += 1
-  print("\nRenamed "+str(i)+" files")
+  print("\nRenamed %d files" %i)
 
 
 def main():
