@@ -1,9 +1,4 @@
 import os
-from sys import platform
-
-def is_linux():
-  if not platform.startswith('linux'):
-    exit("OS not supported")
 
 def rename_all(path: str):
   i = 0
@@ -32,8 +27,6 @@ def rename_all(path: str):
 
 
 def main():
-  is_linux()
-
   try:
     path = input("Path to directory: ")
     
