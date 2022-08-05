@@ -5,6 +5,22 @@ def is_linux():
   if not platform.startswith('linux'):
     exit("OS not supported")
 
+def rename_all(path: str):
+  i = 0
+  abspath = os.path.abspath(path)
+
+  for filename in os.listdir(abspath):
+    extension = os.path.splitext(filename)[1]
+
+    original_name = os.path.join(abspath, filename)
+    new_name = os.path.join(abspath, str(i) + extension)
+
+    os.rename(original_name, new_name)
+    print("Renamed "+original_name+" to "+new_name)
+    i += 1
+  print("\nRenamed "+str(i)+" files")
+
+
 def main():
   is_linux()
 
@@ -15,26 +31,17 @@ def main():
       raise Exception("Path doesn't exist")
     
     while True:
-      rename_all_files = input("Rename all files? [Y/n] ").lower()
-      if rename_all_files == 'y':
-        print("yes!")
+      should_rename_all = input("Rename all files? [Y/n] ").lower()
+      if should_rename_all == 'y' or should_rename_all == '':
+        rename_all(path)
         break
-      elif rename_all_files == 'n':
+      elif should_rename_all == 'n':
         print("no!")
         break
       else:
         print("\nPlease only enter Y or N!")
   except Exception as error:
-    print(error)
-  
-  # i = 0
-  # path = ""
-  # for filename in os.listdir(path):
-  #   my_dest = "img" + str(i) + ".jpg"
-  #   my_source = path + filename
-  #   my_dest = path + my_dest
-  #   os.rename(my_dest, my_source)
-  #   i += 1
+    print("\n" + error)
 
 if __name__ == '__main__':
     main()
