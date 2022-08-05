@@ -15,6 +15,16 @@ def rename_all(path: str):
     original_name = os.path.join(abspath, filename)
     new_name = os.path.join(abspath, str(i) + extension)
 
+    j = 1
+    while os.path.exists(new_name):
+      if new_name == original_name:
+        break
+
+      new_name = os.path.join(abspath, str(i) + "_" + str(j) + extension)
+      if j == 10:
+        raise Exception("New file name already exists and couldn't be renamed")
+      j += 1
+
     os.rename(original_name, new_name)
     print("Renamed "+original_name+" to "+new_name)
     i += 1
