@@ -4,11 +4,13 @@ def rename_all(path: str):
   i = 0
   abspath = os.path.abspath(path)
 
+  prefix = input("Enter a suffix for the new name (press enter if none): ")
+
   for filename in os.listdir(abspath):
     extension = os.path.splitext(filename)[1]
 
     original_name = os.path.join(abspath, filename)
-    new_name = os.path.join(abspath, str(i) + extension)
+    new_name = os.path.join(abspath, prefix + '_' + str(i) + extension)
 
     j = 1
     while os.path.exists(new_name):
