@@ -1,4 +1,5 @@
 import os
+from sys import exit
 
 def rename_all(path: str):
   i = 0
@@ -36,13 +37,12 @@ def main():
       raise Exception("Path doesn't exist")
     
     while True:
-      should_rename_all = input("Rename all files? [Y/n] ").lower()
-      if should_rename_all == 'y' or should_rename_all == '':
+      confirm_rename = input("This is will rename all files in the directory. Proceed? [Y/n] ").lower()
+      if confirm_rename == 'y' or confirm_rename == '':
         rename_all(path)
         break
-      elif should_rename_all == 'n':
-        print("no!")
-        break
+      elif confirm_rename == 'n':
+        exit()
       else:
         print("\nPlease only enter Y or N!")
   except Exception as error:
