@@ -7,11 +7,11 @@ def rename_all(path: str):
 
   prefix = input("Enter a suffix for the new name (press enter if none): ")
 
-  for filename in os.listdir(abspath):
-    extension = os.path.splitext(filename)[1]
+  for entry in os.scandir(abspath):
+    extension = os.path.splitext(entry.name)[1]
 
-    original_name = os.path.join(abspath, filename)
-    new_name = os.path.join(abspath, prefix + '_' + str(i) + extension)
+    original_name = os.path.join(abspath, entry.name)
+    new_name = os.path.join(abspath, prefix + str(i) + extension)
 
     j = 1
     while os.path.exists(new_name):
@@ -26,6 +26,7 @@ def rename_all(path: str):
     os.rename(original_name, new_name)
     print("Renamed %s to %s" %(original_name, new_name))
     i += 1
+
   print("\nRenamed %d files" %i)
 
 
