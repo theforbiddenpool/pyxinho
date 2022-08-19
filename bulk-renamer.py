@@ -38,11 +38,11 @@ def main():
       raise Exception("Path doesn't exist")
     
     while True:
-      confirm_rename = input("This is will rename all files in the directory. Proceed? [Y/n] ").lower()
-      if confirm_rename == 'y' or confirm_rename == '':
+      confirm_rename = input("\nThis is will rename all files in the directory. Proceed? [y/N] ").lower()
+      if confirm_rename == 'y':
         rename_all(path)
         break
-      elif confirm_rename == 'n':
+      elif confirm_rename == 'n' or confirm_rename == '':
         exit()
       else:
         print("\nPlease only enter Y or N!")
